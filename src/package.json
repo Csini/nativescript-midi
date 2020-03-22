@@ -1,0 +1,79 @@
+{
+	"name": "nativescript-midi",
+	"version": "1.0.0",
+	"description": "A NativeScript plugin for communicating with MIDI devices (e.g. musical instruments or apps).",
+	"main": "midi",
+	"typings": "index.d.ts",
+	"nativescript": {
+		"platforms": {
+			"android": "6.0.0",
+			"ios": "6.0.1"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/csini/nativescript-midi.git"
+	},
+	"scripts": {
+		"tsc": "npm i && tsc",
+		"build": "npm run tsc && npm run build.native",
+		"build.native": "node scripts/build-native.js",
+		"tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+		"ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
+		"prepack": "npm run build.native",
+		"demo.ios": "npm i && cd ../demo && tns run ios",
+		"demo.android": "npm i && cd ../demo && tns run android",
+		"demo.reset": "cd ../demo && npx rimraf -- hooks node_modules platforms package-lock.json",
+		"demo-angular.ios": "npm i && cd ../demo-angular && tns run ios",
+		"demo-angular.android": "npm i && cd ../demo-angular && tns run android",
+		"demo-angular.reset": "cd ../demo-angular && npx rimraf -- hooks node_modules platforms package-lock.json",
+		"plugin.prepare": "npm run build && cd ../demo && tns plugin remove nativescript-midi && tns plugin add ../src && cd ../demo-angular && tns plugin remove nativescript-midi && tns plugin add ../src",
+		"clean": "npm run demo.reset && npm run demo-angular.reset && npx rimraf -- node_modules package-lock.json && npm i",
+		"docs": "jsdoc2md src/*.js > docs/api.md",
+		"reinstall-utils": "rm -rf node_modules/nativescript-utilities && npm install"
+	},
+	"keywords": [
+		"NativeScript",
+		"JavaScript",
+		"Android",
+		"MIDI",
+		"music",
+		"keyboard",
+		"musical",
+		"instrument",
+		"iOS"
+	],
+	"homepage": "https://github.com/csini/nativescript-midi",
+	"bugs": {
+		"url": "https://github.com/csini/nativescript-midi/issues"
+	},
+	"author": {
+		"name": "Nathan Hill",
+		"email": "youremail@yourdomain.com"
+	},
+	"contributors": [
+		{
+			"name": "Csini",
+			"email": "csini@gmx.com"
+		}
+	],
+	"license": "MIT",
+	"devDependencies": {
+		"tns-core-modules": "^6.0.0",
+		"tns-platform-declarations": "^6.0.0",
+		"typescript": "~3.4.5",
+		"prompt": "^1.0.0",
+		"rimraf": "^2.6.3",
+		"tslint": "^5.12.1",
+		"semver": "^5.6.0",
+		"babel-cli": "^6.18.0",
+		"babel-preset-latest": "^6.16.0",
+		"jsdoc-to-markdown": "^2.0.1",
+		"jshint": "^2.9.4"
+	},
+	"dependencies": {
+		"nativescript-utilities": "^0.1.0",
+		"parameter-validator": "^1.0.0"
+	},
+	"bootstrapper": "nativescript-plugin-seed"
+}
